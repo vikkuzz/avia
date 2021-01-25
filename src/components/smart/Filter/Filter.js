@@ -4,6 +4,11 @@ export default class Filter extends React.Component {
   state = {};
 
   render() {
-    return <input type="checkbox" />;
+    return (
+      <div className="wrap">
+        Filter
+        <input type="checkbox" />
+      </div>
+    );
   }
 }
