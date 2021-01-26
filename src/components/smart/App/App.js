@@ -12,11 +12,13 @@ export default class App extends React.Component {
     return (
       <div className="app">
         <header className="app__header">
-          <img alt="logo" className="logo" src="./Logo.svg" />
+          <div className="app__logo-bckg">
+            <img className="app__logo-pic" alt="logo" src="Group.svg" />
+          </div>
         </header>
         <div className="app__container">
-          <Filter className="filter app__container-left" />
-          <section className="section app__container-right">
+          <Filter />
+          <section>
             {/* <Tabs className="section__tabs" /> */}
             <CardList className="section__content" />
           </section>

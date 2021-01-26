@@ -1,7 +1,118 @@
-.app__header{
+.app{
+  .app__header{
     min-width: 320px;
     min-height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+  .app__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media(min-width: 768px){
+      flex-direction: row;
+    }
+  }
+
+  .app__logo-bckg{
+    position: relative;
+    display: flex;
+    width: 60px;
+    height: 60px;
+    background: url('../../../img/Oval.svg') no-repeat center;
+    border-radius:50%;
+    overflow: hidden;
+    box-shadow: 0px 8px 11px rgba(55, 104, 142, 0.25);
+    
+    &:after{
+      content: '';
+      width: 60px;
+      height: 60px;
+      background: url('../../../img/Plane.svg');
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      -webkit-animation-name: slideInLeft;
+      animation-name: slideInLeft;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }    
+  }
+
+  .app__logo-pic{
+    border-radius:50%;
+    -webkit-animation-name: rotateInDownRight;
+    animation-name: rotateInDownRight;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+}
+
+
+  @-webkit-keyframes slideInLeft {
+  0% {
+    
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%) scale(0);
+  visibility: visible;
+  }
+  100% {
+    
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+  }
+  @keyframes slideInLeft {
+  0% {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%) scale(0);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+  } 
+
+
+    @-webkit-keyframes rotateInDownRight {
+    0% {
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    -webkit-transform: rotate3d(0, 0, 1, 45deg);
+    transform: rotate3d(0, 0, 1, 45deg);
+    opacity: 0;
+    }
+    100% {
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    -webkit-transform: none;
+    transform: none;
+    opacity: 1;
+    }
+    }
+    @keyframes rotateInDownRight {
+    0% {
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    -webkit-transform: rotate3d(0, 0, 1, 45deg);
+    transform: rotate3d(0, 0, 1, 45deg);
+    opacity: 0;
+    }
+    100% {
+    -webkit-transform-origin: right bottom;
+    transform-origin: right bottom;
+    -webkit-transform: none;
+    transform: none;
+    opacity: 1;
+    }
+    } 
