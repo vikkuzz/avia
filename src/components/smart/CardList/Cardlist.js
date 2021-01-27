@@ -1,9 +1,15 @@
 import React from 'react';
 
+import Card from '../../stupid/Card';
+
 export default class Cardlist extends React.Component {
   state = {};
 
   render() {
-    return <div className="wrap">Cardlist</div>;
+    return (
+      <div className="section">
+        <Card />
+      </div>
+    );
   }
 }

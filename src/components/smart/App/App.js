@@ -2,6 +2,7 @@ import React from 'react';
 
 import Filter from '../Filter';
 import CardList from '../CardList';
+import Tabs from '../../stupid/Tabs';
 
 import './App.scss';
 
@@ -18,9 +19,9 @@ export default class App extends React.Component {
         </header>
         <div className="app__container">
           <Filter />
-          <section>
-            {/* <Tabs className="section__tabs" /> */}
-            <CardList className="section__content" />
+          <section className="app__content">
+            <Tabs />
+            <CardList />
           </section>
         </div>
       </div>
