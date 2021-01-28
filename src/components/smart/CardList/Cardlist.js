@@ -2,6 +2,8 @@ import React from 'react';
 
 import Card from '../../stupid/Card';
 
+import './Cardlist.scss';
+
 export default class Cardlist extends React.Component {
   state = {};
 

@@ -1,7 +1,25 @@
+@font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/OpenSans-Regular.ttf") format("ttf"),
+  url("fonts/OpenSans-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  }
+
+  @font-face {
+  font-family: "OpenSans";
+  src: url("./fonts/OpenSans-Semibold.ttf") format("ttf"),
+  url("fonts/OpenSans-Semibold.ttf") format("ttf");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  }
 
 body {
   margin: 0;  
   background:#F3F7FA;
+  font-family: OpenSans, Arial, sans-serif;
 }
 
 
