@@ -10,16 +10,17 @@
     border-radius: 5px;
     margin: 10px;  
     padding-top: 10px;
-    
+    font-size: 13px;
     box-sizing: border-box;
 
-
-
+    @media(min-width:420px){
+         font-size: 15px;
+    }
 
     @media(min-width: 768px){
         width:232px;
         justify-content: flex-start;
-        padding: 20px;  
+        padding: 20px;         
     }
 
     .filter__header{
@@ -60,10 +61,8 @@
             
             grid-column: 3;
         }
-                
-        
-
     }
+
     .filter__inputs{
         display: grid;
         width: 100%;
@@ -71,13 +70,7 @@
 
         @media(min-width: 768px){
             display: flex;
-            flex-direction: column;
-            
-        }
-
-
-        
-    }
-
-    
+            flex-direction: column;            
+        }        
+    }    
 }

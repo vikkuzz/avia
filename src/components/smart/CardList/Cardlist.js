@@ -11,6 +11,10 @@ export default class Cardlist extends React.Component {
     return (
       <div className="section">
         <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
       </div>
     );
   }
