@@ -1,3 +1,4 @@
-const searchId = (id) => ({ type: 'searchId', id });
+/* eslint-disable import/prefer-default-export */
+export const getTickets = (tickets) => ({ type: 'getTickets', tickets });
 
-export default searchId;
+export const inc = () => ({ type: 'inc' });

@@ -7,4 +7,12 @@ export default class Api {
     console.log(result);
     return result.searchId;
   }
+
+  async getTickets() {
+    const searchId = await this.getSearchId();
+    const res = await fetch(`${this.baseAddres}tickets?searchId=${searchId}`);
+    const result = await res.json();
+    console.log(result.tickets);
+    return result.tickets;
+  }
 }

@@ -1,32 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, bindActionCreators } from 'redux';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-import reducer from './redux/reducer';
-import * as actions from './redux/actions';
-import Api from './components/api';
+import reducer from './redux/reducer/reducer';
 
 import './index.css';
 import './variables.scss';
 
 import App from './components/smart/App';
 
-const api = new Api();
-
-const getSearchId = api.getSearchId();
-
 const store = createStore(reducer);
-const { dispatch } = store;
-const { searchId } = bindActionCreators(actions, dispatch);
 
-const update = () => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <App searchId={() => console.log(searchId(getSearchId))} />
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-};
-
-update();
-store.subscribe(update);
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
