@@ -2,3 +2,7 @@
 export const getTickets = (tickets) => ({ type: 'getTickets', tickets });
 
 export const inc = () => ({ type: 'inc' });
+
+export const cheaply = () => ({ type: 'cheaply' });
+
+export const faster = () => ({ type: 'faster' });
