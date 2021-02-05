@@ -12,6 +12,7 @@ const Tabs = (state) => {
     if (state.cheaply) {
       const btn = document.querySelector('.tabs__btn');
       btn.focus();
+      console.log(state);
     }
   });
 
@@ -32,6 +33,7 @@ const mapStateToprops = (state) => ({
   getTickets: state.tickets,
   cheaply: state.cheaply,
   faster: state.faster,
+  transfer: state.transfer,
 });
 
 export default connect(mapStateToprops)(Tabs);

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-const reducer = (state = { count: 0, tickets: [], cheaply: true, faster: false }, action) => {
+const reducer = (state = { count: 0, tickets: [], cheaply: true, faster: false, transfer: null }, action) => {
   switch (action.type) {
     case 'getTickets':
       state.tickets = action.tickets;
@@ -16,6 +16,9 @@ const reducer = (state = { count: 0, tickets: [], cheaply: true, faster: false }
     case 'faster':
       return { ...state, faster: true, cheaply: false };
 
+    case 'transfer':
+      state.transfer = action.trans;
+      return { ...state };
     default:
       return state;
   }

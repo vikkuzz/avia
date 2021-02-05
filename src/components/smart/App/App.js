@@ -12,7 +12,7 @@ import './App.scss';
 
 const api = new Api();
 
-const App = ({ count, inc, getTickets }) => {
+const App = ({ state, count, inc, getTickets }) => {
   const dispatch = useDispatch();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => dispatch(getTickets()), []);
@@ -26,6 +26,9 @@ const App = ({ count, inc, getTickets }) => {
         </button>
         <button type="submit" onClick={getTickets}>
           x
+        </button>
+        <button type="submit" onClick={() => console.log(state)}>
+          s
         </button>
 
         <div className="app__logo-bckg">
