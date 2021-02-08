@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import reduxThunk from 'redux-thunk';
 
 import reducer from './redux/reducer';
 
@@ -10,7 +11,13 @@ import './variables.scss';
 
 import App from './components/smart/App';
 
-const store = createStore(reducer);
+const loggerMiddleware = (store) => (next) => (action) => {
+  const result = next(action);
+  console.log('Middleware', store.getState());
+  return result;
+};
+
+const store = createStore(reducer, applyMiddleware(loggerMiddleware, reduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -9,19 +9,28 @@ const Tabs = (state) => {
   const className = `tabs__btn`;
 
   useEffect(() => {
+    const btn1 = document.querySelector('.tabs__btn');
+    const btn2 = document.getElementById('faster');
+
     if (state.cheaply) {
-      const btn = document.querySelector('.tabs__btn');
-      btn.focus();
-      console.log(state);
+      btn1.classList.add('tabs__btn--active');
+    } else if (!state.cheaply) {
+      btn1.classList.remove('tabs__btn--active');
+    }
+
+    if (state.faster) {
+      btn2.classList.add('tabs__btn--active');
+    } else if (!state.faster) {
+      btn2.classList.remove('tabs__btn--active');
     }
   });
 
   return (
     <div className="tabs">
-      <button type="submit" className={`${className}`} onClick={() => dispatch(cheaply())}>
+      <button type="submit" className={className} id="cheaply" onClick={() => dispatch(cheaply())}>
         дешево
       </button>
-      <button type="submit" className={className} onClick={() => dispatch(faster())}>
+      <button type="submit" className={className} id="faster" onClick={() => dispatch(faster())}>
         быстро
       </button>
     </div>

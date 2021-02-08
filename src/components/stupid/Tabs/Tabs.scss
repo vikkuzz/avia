@@ -40,4 +40,8 @@
             border-radius: 0 5px 5px 0;                        
         }
     }
+    .tabs__btn--active{
+        background: $base-color;
+        color: #FFFFFF;
+    }
 }
