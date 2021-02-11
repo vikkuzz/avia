@@ -19,10 +19,6 @@ const reducer = (
       state.tickets = action.tickets;
       return { ...state };
 
-    case 'inc':
-      state.count += 1;
-      return { ...state };
-
     case 'cheaply':
       return { ...state, cheaply: true, faster: false };
 

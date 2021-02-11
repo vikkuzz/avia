@@ -8,7 +8,6 @@ import './Filter.scss';
 const Filter = (state) => {
   const dispatch = useDispatch();
   const elements = document.querySelectorAll('label > input');
-  console.log(state);
 
   const checkState = (states, element) => {
     for (const elem of element) {
@@ -52,10 +51,6 @@ const Filter = (state) => {
 };
 
 const mapStateToprops = (state) => ({
-  count: state.count,
-  getTickets: state.tickets,
-  cheaply: state.cheaply,
-  faster: state.faster,
   all: state.all,
   without: state.without,
   one: state.one,

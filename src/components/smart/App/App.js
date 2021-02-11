@@ -6,31 +6,20 @@ import Filter from '../Filter';
 import CardList from '../CardList';
 import Tabs from '../../stupid/Tabs';
 import * as actions from '../../../redux/actions';
-import Api from '../../api';
+//import Api from '../../api';
 
 import './App.scss';
 
-const api = new Api();
+//const api = new Api();
 
-const App = ({ state, count, inc, getTickets }) => {
+const App = ({ fetchTickets }) => {
   const dispatch = useDispatch();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => dispatch(getTickets()), []);
+  useEffect(() => dispatch(fetchTickets()), []);
 
   return (
     <div className="app">
       <header className="app__header">
-        {count}
-        <button type="submit" onClick={inc}>
-          o
-        </button>
-        <button type="submit" onClick={getTickets}>
-          x
-        </button>
-        <button type="submit" onClick={() => console.log(state)}>
-          s
-        </button>
-
         <div className="app__logo-bckg">
           <img className="app__logo-pic" alt="logo" src="Group.svg" />
         </div>
@@ -46,19 +35,14 @@ const App = ({ state, count, inc, getTickets }) => {
   );
 };
 
-const mapStateToprops = (state) => ({
-  count: state.count,
-  getTickets: state.tickets,
+const mapStateToProps = (state) => ({
+  tickets: state.tickets,
 });
 const mapDispatchToProps = (dispatch) => {
-  const { inc, getTickets } = bindActionCreators(actions, dispatch);
+  const { ticketsFetchData } = bindActionCreators(actions, dispatch);
 
   return {
-    inc,
-    getTickets: () => {
-      const tickets = api.getTickets();
-      return getTickets(tickets);
-    },
+    fetchTickets: () => dispatch(ticketsFetchData()),
   };
 };
-export default connect(mapStateToprops, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
