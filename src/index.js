@@ -18,13 +18,7 @@ const composeEnhancers =
       })
     : compose;
 
-const loggerMiddleware = (store) => (next) => (action) => {
-  const result = next(action);
-  console.log('Middleware', store.getState());
-  return result;
-};
-
-const store = createStore(reducer, composeEnhancers(applyMiddleware(loggerMiddleware, thunkM)));
+const store = createStore(reducer, composeEnhancers(applyMiddleware(thunkM)));
 
 ReactDOM.render(
   <Provider store={store}>

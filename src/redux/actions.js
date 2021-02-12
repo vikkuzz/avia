@@ -6,15 +6,7 @@ export const getTickets = (tickets) => ({ type: 'getTickets', tickets });
 
 export function ticketsFetchData() {
   return (dispatch) => {
-    api
-      .getTickets()
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response;
-      })
-      .then((tickets) => dispatch(getTickets(tickets)));
+    api.getTickets().then((tickets) => dispatch(getTickets(tickets)));
   };
 }
 

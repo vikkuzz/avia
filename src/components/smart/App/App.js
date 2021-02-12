@@ -1,21 +1,17 @@
 import React, { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 
 import Filter from '../Filter';
 import CardList from '../CardList';
 import Tabs from '../../stupid/Tabs';
-import * as actions from '../../../redux/actions';
-//import Api from '../../api';
+import { ticketsFetchData } from '../../../redux/actions';
 
 import './App.scss';
 
-//const api = new Api();
-
-const App = ({ fetchTickets }) => {
+const App = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => dispatch(fetchTickets()), []);
+  useEffect(() => dispatch(ticketsFetchData()), []);
 
   return (
     <div className="app">
@@ -35,14 +31,4 @@ const App = ({ fetchTickets }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  tickets: state.tickets,
-});
-const mapDispatchToProps = (dispatch) => {
-  const { ticketsFetchData } = bindActionCreators(actions, dispatch);
-
-  return {
-    fetchTickets: () => dispatch(ticketsFetchData()),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
