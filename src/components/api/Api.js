@@ -10,7 +10,12 @@ export default class Api {
 
   getTickets = async () => {
     const searchId = await this.getSearchId();
-    const res = await fetch(`${this.baseAddres}tickets?searchId=${searchId}`);
+    const res = await fetch(`${this.baseAddres}tickets?searchId=${searchId}`).then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response;
+    });
     const result = await res.json();
 
     return result.tickets;

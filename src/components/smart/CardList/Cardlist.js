@@ -1,23 +1,15 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Card from '../../stupid/Card';
 
 import './Cardlist.scss';
 
-const Cardlist = ({ tickets }) => {
-  console.log(tickets);
-
-  return (
-    <div className="section">
-      <Card />
-    </div>
-  );
+const Cardlist = () => {
+  const tickets = useSelector((state) => state.tickets);
+  const elem = tickets.map((item, i) => (i < 4 ? <Card key={Date.now() * Math.random()} itemProps={item} /> : null));
+  return <div className="section">{elem}</div>;
 };
 
-const mapStateToprops = (state) => ({
-  state,
-  tickets: state.tickets,
-});
-
-export default connect(mapStateToprops)(Cardlist);
+export default Cardlist;
