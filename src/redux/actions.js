@@ -4,9 +4,16 @@ import Api from '../components/api/Api';
 const api = new Api();
 export const getTickets = (tickets) => ({ type: 'getTickets', tickets });
 
+export const hasError = () => ({
+  type: 'error',
+});
+
 export function ticketsFetchData() {
   return (dispatch) => {
-    api.getTickets().then((tickets) => dispatch(getTickets(tickets)));
+    api
+      .getTickets()
+      .then((tickets) => dispatch(getTickets(tickets)))
+      .catch(() => dispatch(hasError()));
   };
 }
 

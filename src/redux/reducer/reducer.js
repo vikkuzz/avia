@@ -2,7 +2,6 @@
 
 const reducer = (
   state = {
-    count: 0,
     tickets: [],
     cheaply: true,
     faster: false,
@@ -11,6 +10,7 @@ const reducer = (
     two: false,
     three: false,
     without: false,
+    error: false,
   },
   action
 ) => {
@@ -81,6 +81,9 @@ const reducer = (
       }
 
       return { ...state };
+
+    case 'error':
+      return { ...state, error: true };
 
     default:
       return state;
