@@ -1,11 +1,7 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-const-assign */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-return-assign */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Spin } from 'antd';
 import { useSelector } from 'react-redux';
 
 import Card from '../../stupid/Card';
@@ -16,7 +12,6 @@ const Cardlist = () => {
   const tickets = useSelector((state) => state.tickets);
   const cheaply = useSelector((state) => state.cheaply);
   const faster = useSelector((state) => state.faster);
-  const all = useSelector((state) => state.all);
   const without = useSelector((state) => state.without);
   const one = useSelector((state) => state.one);
   const two = useSelector((state) => state.two);
@@ -39,47 +34,26 @@ const Cardlist = () => {
   }
 
   function checkFilter(w, o, tw, th, arr) {
-    const arrW = [];
-    const arrO = [];
-    const arrTw = [];
-    const arrTh = [];
-    if (w) {
-      arr.map((item) => {
-        if (item.segments[0].stops.length === 0) {
-          arrW.push(item);
-        }
-      });
-    }
-    if (o) {
-      arr.map((item) => {
-        if (item.segments[0].stops.length === 1) {
-          arrW.push(item);
-        }
-      });
-    }
-    if (tw) {
-      arr.map((item) => {
-        if (item.segments[0].stops.length === 2) {
-          arrW.push(item);
-        }
-      });
-    }
-    if (th) {
-      arr.map((item) => {
-        if (item.segments[0].stops.length === 3) {
-          arrW.push(item);
-        }
-      });
-    }
-    const newArr = [...arrW, ...arrO, ...arrTw, ...arrTh];
+    const propsArr = [w, o, tw, th];
+    const resultArr = [];
+    propsArr.forEach((prop, i) => {
+      if (prop) {
+        arr.map((item) => {
+          if (item.segments[0].stops.length === i) {
+            resultArr.push(item);
+          }
+        });
+      }
+    });
 
-    return newArr;
+    return resultArr;
   }
+
   let arrs = [];
 
   arrs = checkFilter(without, one, two, three, arrTickets);
 
-  let elem = arrs.map((item, i) => (i < 10 ? <Card key={Date.now() * Math.random()} itemProps={item} /> : null));
+  let elem = arrs.map((item) => <Card key={Date.now() * Math.random()} itemProps={item} /> || <Spin size="large" />);
 
   if (arrs.length < 1) {
     elem = 'Рейсов, подходящих под заданные фильтры, не найдено';
