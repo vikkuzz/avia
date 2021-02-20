@@ -24,7 +24,6 @@ export function ticketsFetchData(id) {
     api
       .getTickets(id)
       .then(({ tickets, stop }) => {
-        console.log(stop);
         dispatch(getTickets(tickets, stop));
       })
       .catch(() => dispatch(hasError()));

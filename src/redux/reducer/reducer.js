@@ -23,7 +23,7 @@ const reducer = (
       return { ...state };
 
     case 'scroll':
-      if (action.e.target.scrollTop > action.e.target.scrollHeight - 550) {
+      if (action.e.target.scrollTop > action.e.target.scrollHeight - 850) {
         state.ticketsForView += 20;
       }
 
