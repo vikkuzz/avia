@@ -5,18 +5,35 @@ const reducer = (
     tickets: [],
     cheaply: true,
     faster: false,
-    all: false,
-    one: false,
-    two: false,
-    three: false,
-    without: false,
+    all: true,
+    one: true,
+    two: true,
+    three: true,
+    without: true,
     error: false,
+    stop: false,
+    searchId: null,
+    ticketsForView: 10,
   },
   action
 ) => {
   switch (action.type) {
+    case 'searchId':
+      state.searchId = action.id;
+      return { ...state };
+
+    case 'scroll':
+      if (action.e.target.scrollTop > action.e.target.scrollHeight - 550) {
+        state.ticketsForView += 20;
+      }
+
+      return { ...state };
+
     case 'getTickets':
-      state.tickets = action.tickets;
+      state.tickets = [...state.tickets, ...action.tickets];
+      if (action.stop) {
+        state.stop = true;
+      }
       return { ...state };
 
     case 'cheaply':

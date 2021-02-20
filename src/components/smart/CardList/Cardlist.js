@@ -1,12 +1,16 @@
+/* eslint-disable no-cond-assign */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React from 'react';
+import React, { Suspense } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Spin } from 'antd';
-import { useSelector } from 'react-redux';
 
-import Card from '../../stupid/Card';
+import { handleScroll } from '../../../redux/actions';
 
 import './Cardlist.scss';
+
+const Card = React.lazy(() => import('../../stupid/Card'));
 
 const Cardlist = () => {
   const tickets = useSelector((state) => state.tickets);
@@ -16,7 +20,9 @@ const Cardlist = () => {
   const one = useSelector((state) => state.one);
   const two = useSelector((state) => state.two);
   const three = useSelector((state) => state.three);
-  const error = useSelector((state) => state.error);
+  const ticketsForView = useSelector((state) => state.ticketsForView);
+
+  const dispatch = useDispatch();
 
   const arrTickets = JSON.parse(JSON.stringify(tickets));
 
@@ -53,15 +59,18 @@ const Cardlist = () => {
 
   arrs = checkFilter(without, one, two, three, arrTickets);
 
-  let elem = arrs.map((item) => <Card key={Date.now() * Math.random()} itemProps={item} /> || <Spin size="large" />);
+  let elem = arrs.map((item, i) =>
+    i < ticketsForView ? <Card key={Date.now() * Math.random()} itemProps={item} /> : null
+  );
 
   if (arrs.length < 1) {
     elem = 'Рейсов, подходящих под заданные фильтры, не найдено';
   }
-  if (error) {
-    elem = 'Обновите страницу';
-  }
-  return <div className="section">{elem}</div>;
+  return (
+    <div className="section" onScroll={(e) => dispatch(handleScroll(e))}>
+      <Suspense fallback={<Spin />}>{elem}</Suspense>
+    </div>
+  );
 };
 
 export default Cardlist;

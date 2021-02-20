@@ -29,21 +29,34 @@ const Filter = (state) => {
       <span className="filter__header">Количество пересадок</span>
       <div className="filter__inputs">
         <label className="filter__item" id="all">
-          <input type="checkbox" value="all" onClick={(e) => dispatch(dispatchAction(e.target.value))} />
+          <input type="checkbox" value="all" onClick={(e) => dispatch(dispatchAction(e.target.value))} defaultChecked />
           Все
         </label>
         <label className="filter__item" id="without">
-          <input type="checkbox" value="without" onClick={(e) => dispatch(dispatchAction(e.target.value))} />
+          <input
+            type="checkbox"
+            value="without"
+            onClick={(e) => dispatch(dispatchAction(e.target.value))}
+            defaultChecked
+          />
           Без пересадок
         </label>
         <label className="filter__item" id="one">
-          <input type="checkbox" value="one" onClick={(e) => dispatch(dispatchAction(e.target.value))} />1 пересадка
+          <input type="checkbox" value="one" onClick={(e) => dispatch(dispatchAction(e.target.value))} defaultChecked />
+          1 пересадка
         </label>
         <label className="filter__item" id="two">
-          <input type="checkbox" value="two" onClick={(e) => dispatch(dispatchAction(e.target.value))} />2 пересадки
+          <input type="checkbox" value="two" onClick={(e) => dispatch(dispatchAction(e.target.value))} defaultChecked />
+          2 пересадки
         </label>
         <label className="filter__item" id="three">
-          <input type="checkbox" value="three" onClick={(e) => dispatch(dispatchAction(e.target.value))} />3 пересадки
+          <input
+            type="checkbox"
+            value="three"
+            onClick={(e) => dispatch(dispatchAction(e.target.value))}
+            defaultChecked
+          />
+          3 пересадки
         </label>
       </div>
     </div>

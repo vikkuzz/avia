@@ -1,17 +1,38 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Filter from '../Filter';
 import CardList from '../CardList';
 import Tabs from '../../stupid/Tabs';
-import { ticketsFetchData } from '../../../redux/actions';
+import { getId, ticketsFetchData } from '../../../redux/actions';
 
 import './App.scss';
 
 const App = () => {
+  const stop = useSelector((state) => state.stop);
+  const searchId = useSelector((state) => state.searchId);
+
   const dispatch = useDispatch();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => dispatch(ticketsFetchData()), []);
+
+  function getData(id) {
+    let search = id;
+    if (id === null) {
+      search = dispatch(getId());
+    }
+    return search;
+  }
+
+  useEffect(() => {
+    const token = getData(searchId);
+    if (token !== undefined) {
+      for (let i = 0; i < 25; i++) {
+        if (!stop) {
+          dispatch(ticketsFetchData(token));
+        }
+      }
+    }
+  });
 
   return (
     <div className="app">
@@ -24,6 +45,7 @@ const App = () => {
         <Filter />
         <section className="app__content">
           <Tabs />
+
           <CardList />
         </section>
       </div>
