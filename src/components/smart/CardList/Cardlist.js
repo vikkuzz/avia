@@ -1,39 +1,31 @@
-/* eslint-disable no-cond-assign */
-/* eslint-disable prefer-destructuring */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React, { Suspense } from 'react';
+
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Spin } from 'antd';
 
 import { handleScroll } from '../../../redux/actions';
+import Card from '../../stupid/Card';
 
 import './Cardlist.scss';
 
-const Card = React.lazy(() => import('../../stupid/Card'));
-
 const Cardlist = () => {
-  const tickets = useSelector((state) => state.tickets);
-  const cheaply = useSelector((state) => state.cheaply);
-  const faster = useSelector((state) => state.faster);
-  const without = useSelector((state) => state.without);
-  const one = useSelector((state) => state.one);
-  const two = useSelector((state) => state.two);
-  const three = useSelector((state) => state.three);
-  const ticketsForView = useSelector((state) => state.ticketsForView);
+  const myFilter = useSelector((state) => state.filter);
+  const myTickets = useSelector((state) => state.tickets);
+
+  const { tickets, cheaply, faster, ticketsForView } = myTickets;
+  const { without, one, two, three } = myFilter;
 
   const dispatch = useDispatch();
 
-  const arrTickets = JSON.parse(JSON.stringify(tickets));
-
   if (cheaply) {
-    arrTickets.sort((prev, next) => {
+    tickets.sort((prev, next) => {
       if (prev.price < next.price) return -1;
       if (prev.price < next.price) return 1;
     });
   }
   if (faster) {
-    arrTickets.sort((prev, next) => {
+    tickets.sort((prev, next) => {
       if (prev.segments[0].duration < next.segments[0].duration) return -1;
       if (prev.segments[0].duration < next.segments[0].duration) return 1;
     });
@@ -55,20 +47,20 @@ const Cardlist = () => {
     return resultArr;
   }
 
-  let arrs = [];
+  const arrs = checkFilter(without, one, two, three, tickets);
+  let key = 1;
 
-  arrs = checkFilter(without, one, two, three, arrTickets);
+  const elem = arrs.map((card, i) => {
+    key += 1;
+    if (i < ticketsForView) {
+      return <Card key={key} card={card} />;
+    }
+  });
 
-  let elem = arrs.map((item, i) =>
-    i < ticketsForView ? <Card key={Date.now() * Math.random()} itemProps={item} /> : null
-  );
-
-  if (arrs.length < 1) {
-    elem = 'Рейсов, подходящих под заданные фильтры, не найдено';
-  }
   return (
     <div className="section" onScroll={(e) => dispatch(handleScroll(e))}>
-      <Suspense fallback={<Spin />}>{elem}</Suspense>
+      {elem}
+      <span>Билетов под выбранные настройки фильтра не найдено</span>
     </div>
   );
 };

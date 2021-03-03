@@ -1,48 +1,16 @@
 /* eslint-disable no-param-reassign */
 
-const reducer = (
-  state = {
-    tickets: [],
-    cheaply: true,
-    faster: false,
-    all: true,
-    one: true,
-    two: true,
-    three: true,
-    without: true,
-    error: false,
-    stop: false,
-    searchId: null,
-    ticketsForView: 10,
-  },
-  action
-) => {
+const initialState = {
+  all: true,
+  one: true,
+  two: true,
+  three: true,
+  without: true,
+};
+
+const filter = (state = initialState, action) => {
   switch (action.type) {
-    case 'searchId':
-      state.searchId = action.id;
-      return { ...state };
-
-    case 'scroll':
-      if (action.e.target.scrollTop > action.e.target.scrollHeight - 850) {
-        state.ticketsForView += 20;
-      }
-
-      return { ...state };
-
-    case 'getTickets':
-      state.tickets = [...state.tickets, ...action.tickets];
-      if (action.stop) {
-        state.stop = true;
-      }
-      return { ...state };
-
-    case 'cheaply':
-      return { ...state, cheaply: true, faster: false };
-
-    case 'faster':
-      return { ...state, faster: true, cheaply: false };
-
-    case 'allTrans':
+    case 'Dispatch_Click_On_Filter':
       if (state.all && action.transfer === 'all') {
         state.all = false;
         state.without = false;
@@ -99,12 +67,9 @@ const reducer = (
 
       return { ...state };
 
-    case 'error':
-      return { ...state, error: true };
-
     default:
       return state;
   }
 };
 
-export default reducer;
+export default filter;

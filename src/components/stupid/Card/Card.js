@@ -3,8 +3,8 @@ import React from 'react';
 
 import './Card.scss';
 
-const Card = ({ itemProps }) => {
-  const { origin, destination, date, stops, duration } = itemProps.segments[0];
+const Card = ({ card }) => {
+  const { origin, destination, date, stops, duration } = card.segments[0];
   const time = (hm, dur) => {
     let h = new Date(Date.parse(hm)).getUTCHours();
     let m = new Date(Date.parse(hm)).getMinutes();
@@ -39,12 +39,12 @@ const Card = ({ itemProps }) => {
     date: date1,
     stops: stops1,
     duration: duration1,
-  } = itemProps.segments[1];
+  } = card.segments[1];
 
   return (
     <div className="card">
       <div className="card__price">
-        {itemProps.price}
+        {card.price} P
         <img alt="logo" src="S7Logo.png" />
       </div>
       <div className="card__info">

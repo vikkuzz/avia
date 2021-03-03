@@ -1,48 +1,56 @@
-import React, { useEffect } from 'react';
-import { useDispatch, connect } from 'react-redux';
-import { cheaply, faster } from '../../../redux/actions';
+/* eslint-disable no-unused-vars */
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCheaplyTickets, getFastestTickets } from '../../../redux/actions';
 
 import './Tabs.scss';
 
-const Tabs = (state) => {
+const Tabs = () => {
   const dispatch = useDispatch();
-  const className = `tabs__btn`;
+  //const ticketsState = useSelector((state) => state.tickets);
 
-  useEffect(() => {
-    const btn1 = document.querySelector('.tabs__btn');
-    const btn2 = document.getElementById('faster');
+  const cheaply = useRef(null);
+  const faster = useRef(null);
 
-    if (state.cheaply) {
-      btn1.classList.add('tabs__btn--active');
-    } else if (!state.cheaply) {
-      btn1.classList.remove('tabs__btn--active');
+  const handleClick = (ref) => {
+    if (ref.current.id === 'cheaply') {
+      ref.current.classList.add('tabs__btn--active');
+      faster.current.classList.remove('tabs__btn--active');
     }
-
-    if (state.faster) {
-      btn2.classList.add('tabs__btn--active');
-    } else if (!state.faster) {
-      btn2.classList.remove('tabs__btn--active');
+    if (ref.current.id === 'faster') {
+      ref.current.classList.add('tabs__btn--active');
+      cheaply.current.classList.remove('tabs__btn--active');
     }
-  });
+  };
 
   return (
     <div className="tabs">
-      <button type="submit" className={className} id="cheaply" onClick={() => dispatch(cheaply())}>
+      <button
+        type="button"
+        className="tabs__btn tabs__btn--active"
+        id="cheaply"
+        ref={cheaply}
+        onClick={() => {
+          handleClick(cheaply);
+          dispatch(getCheaplyTickets());
+        }}
+      >
         дешево
       </button>
-      <button type="submit" className={className} id="faster" onClick={() => dispatch(faster())}>
+      <button
+        type="button"
+        className="tabs__btn"
+        id="faster"
+        ref={faster}
+        onClick={() => {
+          handleClick(faster);
+          dispatch(getFastestTickets());
+        }}
+      >
         быстро
       </button>
     </div>
   );
 };
 
-const mapStateToprops = (state) => ({
-  count: state.count,
-  getTickets: state.tickets,
-  cheaply: state.cheaply,
-  faster: state.faster,
-  transfer: state.transfer,
-});
-
-export default connect(mapStateToprops)(Tabs);
+export default Tabs;

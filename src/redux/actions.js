@@ -1,23 +1,24 @@
-/* eslint-disable import/prefer-default-export */
-import Api from '../components/api/Api';
+import Api from '../components/services/Api';
 
 const api = new Api();
 
-export const getSearchId = (id) => ({ type: 'searchId', id });
+export const getSearchId = (id) => ({ type: 'Get_Search_Id', id });
 
-export const handleScroll = (e) => ({ type: 'scroll', e });
+export const handleScroll = (e) => ({ type: 'Handle_scroll', e });
+
+export const getCheaplyTickets = () => ({ type: 'Get_Cheaply_Tickets' });
+
+export const getFastestTickets = () => ({ type: 'Get_Fastest_Tickets' });
+
+export const dispatchClickOnFilter = (transfer) => ({ type: 'Dispatch_Click_On_Filter', transfer });
+
+export const getTickets = (tickets, stop) => ({ type: 'Get_Tickets', tickets, stop });
 
 export function getId() {
   return (dispatch) => {
     api.getSearchId().then((id) => dispatch(getSearchId(id)));
   };
 }
-
-export const getTickets = (tickets, stop) => ({ type: 'getTickets', tickets, stop });
-
-export const hasError = () => ({
-  type: 'error',
-});
 
 export function ticketsFetchData(id) {
   return (dispatch) => {
@@ -26,12 +27,6 @@ export function ticketsFetchData(id) {
       .then(({ tickets, stop }) => {
         dispatch(getTickets(tickets, stop));
       })
-      .catch(() => dispatch(hasError()));
+      .catch((e) => e);
   };
 }
-
-export const cheaply = () => ({ type: 'cheaply' });
-
-export const faster = () => ({ type: 'faster' });
-
-export const dispatchAction = (transfer) => ({ type: 'allTrans', transfer });

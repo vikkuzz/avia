@@ -1,60 +1,60 @@
-import React, { useEffect } from 'react';
-import { useDispatch, connect } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { dispatchAction } from '../../../redux/actions';
+import { dispatchClickOnFilter } from '../../../redux/actions';
 
 import './Filter.scss';
 
-const Filter = (state) => {
+const Filter = () => {
   const dispatch = useDispatch();
-  const elements = document.querySelectorAll('label > input');
-
-  const checkState = (states, element) => {
-    for (const elem of element) {
-      const { value } = elem;
-      if (states[value]) {
-        elem.checked = true;
-      } else if (!state[value]) {
-        elem.checked = false;
-      }
-    }
-  };
-
-  useEffect(() => {
-    checkState(state, elements);
-  });
+  const stateFilter = useSelector((state) => state.filter);
 
   return (
     <div className="filter">
       <span className="filter__header">Количество пересадок</span>
       <div className="filter__inputs">
         <label className="filter__item" id="all">
-          <input type="checkbox" value="all" onClick={(e) => dispatch(dispatchAction(e.target.value))} defaultChecked />
+          <input
+            type="checkbox"
+            checked={stateFilter.all}
+            value="all"
+            onChange={(e) => dispatch(dispatchClickOnFilter(e.target.value))}
+          />
           Все
         </label>
         <label className="filter__item" id="without">
           <input
             type="checkbox"
+            checked={stateFilter.without}
             value="without"
-            onClick={(e) => dispatch(dispatchAction(e.target.value))}
-            defaultChecked
+            onChange={(e) => dispatch(dispatchClickOnFilter(e.target.value))}
           />
           Без пересадок
         </label>
         <label className="filter__item" id="one">
-          <input type="checkbox" value="one" onClick={(e) => dispatch(dispatchAction(e.target.value))} defaultChecked />
+          <input
+            type="checkbox"
+            checked={stateFilter.one}
+            value="one"
+            onChange={(e) => dispatch(dispatchClickOnFilter(e.target.value))}
+          />
           1 пересадка
         </label>
         <label className="filter__item" id="two">
-          <input type="checkbox" value="two" onClick={(e) => dispatch(dispatchAction(e.target.value))} defaultChecked />
+          <input
+            type="checkbox"
+            checked={stateFilter.two}
+            value="two"
+            onChange={(e) => dispatch(dispatchClickOnFilter(e.target.value))}
+          />
           2 пересадки
         </label>
         <label className="filter__item" id="three">
           <input
             type="checkbox"
+            checked={stateFilter.three}
             value="three"
-            onClick={(e) => dispatch(dispatchAction(e.target.value))}
-            defaultChecked
+            onChange={(e) => dispatch(dispatchClickOnFilter(e.target.value))}
           />
           3 пересадки
         </label>
@@ -63,12 +63,4 @@ const Filter = (state) => {
   );
 };
 
-const mapStateToprops = (state) => ({
-  all: state.all,
-  without: state.without,
-  one: state.one,
-  two: state.two,
-  three: state.three,
-});
-
-export default connect(mapStateToprops)(Filter);
+export default Filter;
