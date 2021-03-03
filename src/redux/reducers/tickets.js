@@ -32,7 +32,6 @@ const tickets = (state = initialState, action) => {
       return { ...state, cheaply: true, faster: false };
 
     case 'Get_Fastest_Tickets':
-      console.log('fast');
       return { ...state, faster: true, cheaply: false };
 
     default:
