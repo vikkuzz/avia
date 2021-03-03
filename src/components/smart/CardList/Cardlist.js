@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { handleScroll } from '../../../redux/actions';
 import Card from '../../stupid/Card';
 
+import checkFilter from '../../../utils/checkFilter';
+
 import './Cardlist.scss';
 
 const Cardlist = () => {
@@ -29,22 +31,6 @@ const Cardlist = () => {
       if (prev.segments[0].duration < next.segments[0].duration) return -1;
       if (prev.segments[0].duration < next.segments[0].duration) return 1;
     });
-  }
-
-  function checkFilter(w, o, tw, th, arr) {
-    const propsArr = [w, o, tw, th];
-    const resultArr = [];
-    propsArr.forEach((prop, i) => {
-      if (prop) {
-        arr.map((item) => {
-          if (item.segments[0].stops.length === i) {
-            resultArr.push(item);
-          }
-        });
-      }
-    });
-
-    return resultArr;
   }
 
   const arrs = checkFilter(without, one, two, three, tickets);

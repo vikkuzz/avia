@@ -1,4 +1,4 @@
-import Api from '../components/services/Api';
+import Api from '../services/Api';
 
 const api = new Api();
 

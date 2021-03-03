@@ -1,38 +1,13 @@
 /* eslint-disable prefer-const */
 import React from 'react';
 
+import time from '../../../utils/getTime';
+
 import './Card.scss';
 
 const Card = ({ card }) => {
   const { origin, destination, date, stops, duration } = card.segments[0];
-  const time = (hm, dur) => {
-    let h = new Date(Date.parse(hm)).getUTCHours();
-    let m = new Date(Date.parse(hm)).getMinutes();
-    if (h.toString().length < 2) {
-      h = `0${h}`;
-    }
-    if (m.toString().length < 2) {
-      m = `0${m}`;
-    }
 
-    let durH = (+(dur / 60).toFixed() + +h) % 24;
-    let durM = (dur % 60) + +m;
-
-    if (durM > 60) {
-      durH += 1;
-    }
-
-    durM %= 60;
-
-    if (durH.toString().length < 2) {
-      durH = `0${durH}`;
-    }
-    if (durM.toString().length < 2) {
-      durM = `0${durM}`;
-    }
-
-    return `${h}:${m} - ${durH}:${durM}`;
-  };
   const {
     origin: origin1,
     destination: destination1,
@@ -45,7 +20,7 @@ const Card = ({ card }) => {
     <div className="card">
       <div className="card__price">
         {card.price} P
-        <img alt="logo" src="S7Logo.png" />
+        <img alt="logo" src="pics.avs.io/99/36/{IATA_CODE_HERE}.png" />
       </div>
       <div className="card__info">
         <div className="card__titles">

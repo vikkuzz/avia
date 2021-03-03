@@ -7,7 +7,6 @@ import './Tabs.scss';
 
 const Tabs = () => {
   const dispatch = useDispatch();
-  //const ticketsState = useSelector((state) => state.tickets);
 
   const cheaply = useRef(null);
   const faster = useRef(null);
@@ -31,8 +30,8 @@ const Tabs = () => {
         id="cheaply"
         ref={cheaply}
         onClick={() => {
-          handleClick(cheaply);
           dispatch(getCheaplyTickets());
+          handleClick(cheaply);
         }}
       >
         дешево
@@ -43,8 +42,8 @@ const Tabs = () => {
         id="faster"
         ref={faster}
         onClick={() => {
-          handleClick(faster);
           dispatch(getFastestTickets());
+          handleClick(faster);
         }}
       >
         быстро
