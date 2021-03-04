@@ -20,7 +20,7 @@ const Card = ({ card }) => {
     <div className="card">
       <div className="card__price">
         {card.price} P
-        <img alt="logo" src="pics.avs.io/99/36/{IATA_CODE_HERE}.png" />
+        <img alt="logo" src={`https://pics.avs.io/99/36/${card.carrier}.png`} />
       </div>
       <div className="card__info">
         <div className="card__titles">
