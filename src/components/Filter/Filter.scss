@@ -1,0 +1,76 @@
+.filter{
+    display: flex;    
+    color: #4A4A4A;
+    max-width: 482px;
+    width: 100%;
+    flex-wrap: wrap;   
+    justify-content: center;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 10px;  
+    padding-top: 10px;
+    font-size: 13px;
+    box-sizing: border-box;
+
+    @media(min-width:420px){
+         font-size: 15px;
+    }
+
+    @media(min-width: 768px){
+        width:232px;
+        justify-content: flex-start;
+        padding: 20px;         
+    }
+
+    .filter__header{
+        width: 100%;
+        text-align: center;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #4A4A4A;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 12px;
+        margin-bottom: 10px;
+        font-family: inherit;
+
+        @media(min-width: 768px){
+            text-align: start;
+        }
+    }
+    .filter__item{
+        display: flex;
+        flex-wrap: nowrap;
+        margin: 5px;
+
+        &:first-child{
+            grid-column: 1;
+        }
+        &:nth-child(2){
+            
+            grid-column: 2;
+        }
+        &:nth-child(4){
+            
+            grid-column: 2;
+        }
+        &:nth-child(5){
+            
+            grid-column: 3;
+        }
+    }
+
+    .filter__inputs{
+        display: grid;
+        width: 100%;
+        grid-template-columns: 20% 40% 40%;
+
+        @media(min-width: 768px){
+            display: flex;
+            flex-direction: column;            
+        }        
+    }    
+}

@@ -7,7 +7,7 @@ import store from './store';
 import './index.css';
 import './variables.scss';
 
-import App from './components/smart/App';
+import App from './components/App';
 
 ReactDOM.render(
   <Provider store={store}>

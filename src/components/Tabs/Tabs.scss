@@ -1,0 +1,47 @@
+@import '../../variables.scss';
+.tabs{
+    display: flex;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin: 10px;
+
+    
+
+    .tabs__btn{
+        width: 50%;
+        height: 50px;
+        background: #FFFFFF;
+        border-width: 0;
+        outline: none;
+        border: 1px solid #DFE5EC;
+        font-family: inherit;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    
+
+        &:hover{
+            cursor: pointer;
+        }
+
+        &:focus{
+            background: $base-color;
+            color: #FFFFFF;
+        }
+
+        &:first-child{
+            border-radius: 5px 0 0 5px;                        
+        }
+        &:last-child{
+            border-radius: 0 5px 5px 0;                        
+        }
+    }
+    .tabs__btn--active{
+        background: $base-color;
+        color: #FFFFFF;
+    }
+}
