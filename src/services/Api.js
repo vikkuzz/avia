@@ -1,5 +1,5 @@
 export default class Api {
-  baseAddres = `https://front-test.beta.aviasales.ru/`;
+  baseAddres = `https://aviasales-test-api.kata.academy/`;
 
   getSearchId = async () => {
     const res = await fetch(`${this.baseAddres}search`);
